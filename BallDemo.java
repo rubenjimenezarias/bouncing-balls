@@ -96,4 +96,15 @@ public class BallDemo
             }
         }
     }
+    /**
+     * boxBounce
+     * dibuja una bola dentro de un cuadrado y se mueve la bola
+     */
+    public void boxBounce()
+    {
+        myCanvas.drawLine(100,100,100,400);
+        myCanvas.drawLine(500,100,500,400);
+        myCanvas.drawLine(100,100,500,100);
+        myCanvas.drawLine(100,400,500,400);
+    }
 }
