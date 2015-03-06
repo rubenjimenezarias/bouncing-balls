@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Class BallDemo - a short demonstration showing animation with the 
@@ -21,7 +22,6 @@ public class BallDemo
     {
         myCanvas = new Canvas("Ball Demo", 600, 500);
         bolas = new ArrayList<>();
-        loadBalls();
     }
 
     /**
@@ -68,46 +68,29 @@ public class BallDemo
         myCanvas.drawLine(50, ground, 550, ground);
     
         // crate and show the balls
-        int cont = 0;
-        while(cont < balls)
+        Color color;
+        Random aleatorio = new Random();
+        for (int i = 0; i < balls; i++)
         {
-            bolas.get(cont).draw();
-            cont++;
+            color = new Color(aleatorio.nextInt(255),aleatorio.nextInt(255),aleatorio.nextInt(255));
+            bolas.add(new BouncingBall(aleatorio.nextInt(300), aleatorio.nextInt(400), aleatorio.nextInt(40), color, 400, myCanvas));
+            bolas.get(i).draw();
         }
         // make them bounce
         boolean finished =  false;
         while(!finished) {
             myCanvas.wait(50);           // small delay
-            cont = 0;
-            while(cont < balls)
+            for(BouncingBall elemento: bolas)
             {
-                bolas.get(cont).move();
-                cont++;
+                elemento.move();
             }
             // stop once ball has travelled a certain distance on x axis
-            cont = 0;
-            while(cont < balls)
-            {    
-                if(bolas.get(cont).getXPosition() >= 550) {
+            for(BouncingBall elemento: bolas)
+            {
+                if(elemento.getXPosition() >= 550) {
                     finished = true;
                 }
-                cont++;
             }
         }
-    }
-    
-    private void loadBalls()
-    {
-        bolas.add(new BouncingBall(50, 50, 16, Color.BLUE, 400, myCanvas));
-        bolas.add(new BouncingBall(70, 80, 20, Color.RED, 400, myCanvas));        
-        bolas.add(new BouncingBall(80, 70, 5, Color.YELLOW, 400, myCanvas));
-        bolas.add(new BouncingBall(40, 60, 25, Color.ORANGE, 400, myCanvas));
-        bolas.add(new BouncingBall(45, 21, 19, Color.GREEN, 400, myCanvas));
-        bolas.add(new BouncingBall(62, 65, 20, Color.BLACK, 400, myCanvas));
-        bolas.add(new BouncingBall(52, 31, 15, Color.RED, 400, myCanvas));
-        bolas.add(new BouncingBall(32, 59, 3, Color.GREEN, 400, myCanvas));
-        bolas.add(new BouncingBall(26, 55, 32, Color.YELLOW, 400, myCanvas));
-        bolas.add(new BouncingBall(38, 40, 22, Color.BLUE, 400, myCanvas));
-        
     }
 }
