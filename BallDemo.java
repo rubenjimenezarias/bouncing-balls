@@ -54,12 +54,19 @@ public class BallDemo
             }
         }
     }
+    
     /**
      * Simulate x bouncing balls
      * @param int balls indica cuantas bolas quieres que aparezcan.
      */
     public void bounceXBalls(int balls)
     {
+        //COMPROBAMOS SI EL VALOR INTRODUCIDO ES MAYOR QUE 1 SINO PONEMOS UNA BOLA
+        if(balls < 1)
+        {
+            balls = 1;
+        }
+        
         int ground = 400;   // position of the ground line
 
         myCanvas.setVisible(true);
@@ -72,8 +79,8 @@ public class BallDemo
         Random aleatorio = new Random();
         for (int i = 0; i < balls; i++)
         {
-            color = new Color(aleatorio.nextInt(255),aleatorio.nextInt(255),aleatorio.nextInt(255));
-            bolas.add(new BouncingBall(aleatorio.nextInt(300), aleatorio.nextInt(400), aleatorio.nextInt(40), color, 400, myCanvas));
+            color = new Color(aleatorio.nextInt(256),aleatorio.nextInt(256),aleatorio.nextInt(256));
+            bolas.add(new BouncingBall(aleatorio.nextInt(300), aleatorio.nextInt(400), aleatorio.nextInt(40)+5, color, 400, myCanvas));
             bolas.get(i).draw();
         }
         // make them bounce
@@ -83,10 +90,6 @@ public class BallDemo
             for(BouncingBall elemento: bolas)
             {
                 elemento.move();
-            }
-            // stop once ball has travelled a certain distance on x axis
-            for(BouncingBall elemento: bolas)
-            {
                 if(elemento.getXPosition() >= 550) {
                     finished = true;
                 }
