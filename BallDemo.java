@@ -102,9 +102,25 @@ public class BallDemo
      */
     public void boxBounce()
     {
+        //Dibujamos el cuadrado
         myCanvas.drawLine(100,100,100,400);
         myCanvas.drawLine(500,100,500,400);
         myCanvas.drawLine(100,100,500,100);
         myCanvas.drawLine(100,400,500,400);
+        //Creamos la BoxBall
+        BoxBall ball = new BoxBall(110, 110, 15, Color.BLACK, 400, myCanvas);
+        //Hacemos que se mueva
+        // make them bounce
+        boolean finished =  false;
+        while(!finished) {
+            myCanvas.wait(50);           // small delay
+            ball.move();
+            if(ball.getXPosition() >= 385) 
+            {
+                finished = true;
+            }
+            
+        }
+        
     }
 }
