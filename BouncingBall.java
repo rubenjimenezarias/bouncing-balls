@@ -28,7 +28,7 @@ public class BouncingBall
     private int yPosition;
     private final int groundPosition;      // y position of ground
     private Canvas canvas;
-    private int ySpeed = 1;                // initial downward speed
+    private int ySpeed = 1;    // initial downward speed
 
     /**
      * Constructor for objects of class BouncingBall
@@ -49,6 +49,7 @@ public class BouncingBall
         diameter = ballDiameter;
         groundPosition = groundPos;
         canvas = drawingCanvas;
+        int pared = 1;
     }
 
     /**
@@ -70,10 +71,12 @@ public class BouncingBall
 
     /**
      * Move this ball according to its position and speed and redraw.
+     * @param x movimiento de x
+     * @param y movimiento de y
      **/
     public void move()
     {
-        // remove from canvas at the current position
+         // remove from canvas at the current position
         erase();
             
         // compute new position

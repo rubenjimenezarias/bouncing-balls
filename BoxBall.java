@@ -29,7 +29,10 @@ public class BoxBall
     private final int groundPosition;      // y position of ground
     private Canvas canvas;
     private int ySpeed = 1;                // initial downward speed
-
+    //VARIABLES PARA EL METODO MOVE
+    boolean subir = false;
+    boolean izquierda = false;
+    
     /**
      * Constructor for objects of class BouncingBall
      *
@@ -75,11 +78,42 @@ public class BoxBall
     {
         // remove from canvas at the current position
         erase();
-            
-        // compute new position
-        ySpeed += 2;
-        yPosition += 2;
-        xPosition +=2;
+        // comprobamos la posicion de la bola para que vaya a la derecha o a la izquierda
+        if (xPosition == 485)
+        {
+            izquierda = true;
+        }
+        if (xPosition == 101)
+        {
+            izquierda = false;
+        }
+        // comprobamos la posicion de la bola para que suba o baje
+        if (yPosition == 101)
+        {
+            subir = false;
+        }
+        if (yPosition == 385)
+        {
+            subir = true;
+        }
+        
+        //REALIZAMOS MOVIMIENTOS
+        if(subir)
+        {
+            yPosition -= 2;
+        }
+        else 
+        {
+            yPosition += 2;
+        }
+        if (izquierda)
+        {
+            xPosition -= 2;
+        }
+        else 
+        {
+            xPosition += 2;
+        }
 
         // draw again at new position
         draw();
